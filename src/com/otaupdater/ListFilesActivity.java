@@ -265,13 +265,13 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
                                     os.writeBytes("echo 'install_zip(\"/" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "\");' >> /cache/recovery/extendedcommand\n");
                                 } else {
                                     if (selectedOpts[0]) {
-                                        os.writeBytes("echo '--wipe_data' >> /cache/recovery/command\n");
+                                       os.writeBytes("echo 'wipe data' >> /cache/recovery/openrecoveryscript\n");
                                     }
                                     if (selectedOpts[1]) {
-                                        os.writeBytes("echo '--wipe_cache' >> /cache/recovery/command\n");
+                                        os.writeBytes("echo 'wipe cache' >> /cache/recovery/openrecoveryscript\n");
                                     }
 
-                                    os.writeBytes("echo '--update_package=/" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/command\n");
+                                    os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/openrecoveryscript\n");
                                 }
 
                                 os.writeBytes("sync\n");
