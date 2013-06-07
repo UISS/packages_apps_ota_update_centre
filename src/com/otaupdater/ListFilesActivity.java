@@ -256,26 +256,17 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
 //                                            new SimpleDateFormat("yyyy-MM-dd_HH.mm").format(new Date()) +
 //                                            "' >> /cache/recovery/extendedcommand\n");
 //                                }
-                                if (Build.MANUFACTURER.toLowerCase().contains("sony")) {
-                                    if (selectedOpts[0]) {
-                                        os.writeBytes("echo 'format(\"/data\");' >> /cache/recovery/extendedcommand\n");
-                                    }
-                                    if (selectedOpts[1]) {
-                                        os.writeBytes("echo 'format(\"/cache\");' >> /cache/recovery/extendedcommand\n");
-                                    }
 
-                                    os.writeBytes("echo 'install_zip(\"/" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "\");' >> /cache/recovery/extendedcommand\n");
-                                } else {
                                     if (selectedOpts[0]) {
                                        os.writeBytes("echo 'wipe data' >> /cache/recovery/openrecoveryscript\n");
                                     }
                                     if (selectedOpts[1]) {
                                         os.writeBytes("echo 'wipe cache' >> /cache/recovery/openrecoveryscript\n");
+					os.writeBytes("echo 'wipe dalvik' >> /cache/recovery/openrecoveryscript\n");
                                     }
 
                                     os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/openrecoveryscript\n");
 				    os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() + gapps + "' >> /cache/recovery.openrecoveryscript\n");
-                                }
 
                                 os.writeBytes("sync\n");
 
