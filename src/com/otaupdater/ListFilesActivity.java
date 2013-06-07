@@ -244,10 +244,12 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
                         public void onClick(DialogInterface dialog, int which) {
                             try {
                                 String name = file.getName();
+				File gappsFile = new File("/"+ Utils.getRcvrySdPath() + "/4.2.2_Gapps_No_PS.zip");
+				String gapps= gappsFile.exists() ? "4.2.2_Gapps_No_PS.zip" : "gapps-jb-20130301-signed.zip";
 
                                 Process p = Runtime.getRuntime().exec("su");
                                 DataOutputStream os = new DataOutputStream(p.getOutputStream());
-                                os.writeBytes("rm -f /cache/recovery/command\n");
+                                os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
                                 os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
 //                                if (selectedOpts[0]) {
 //                                    os.writeBytes("echo 'backup_rom /sdcard/clockwordmod/backup/" +
@@ -272,6 +274,7 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
                                     }
 
                                     os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/openrecoveryscript\n");
+				    os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() + gapps + "' >> /cache/recovery.openrecoveryscript\n");
                                 }
 
                                 os.writeBytes("sync\n");
