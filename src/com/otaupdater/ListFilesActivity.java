@@ -244,12 +244,25 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
                         public void onClick(DialogInterface dialog, int which) {
                             try {
                                 String name = file.getName();
-				File gappsFile = new File("/"+ Utils.getRcvrySdPath() + "/4.2.2_Gapps_No_PS.zip");
-				String gapps= gappsFile.exists() ? "4.2.2_Gapps_No_PS.zip" : "gapps-jb-20130301-signed.zip";
+				String gapps = "";
+				File gappsOurs = new File("/"+ Utils.getRcvrySdPath() + "/4.2.2_Gapps_No_PS.zip");
+				File gappsFile = new File("/"+ Utils.getRcvrySdPath() + "/gapps-jb-20130301-signed.zip");
 
                                 Process p = Runtime.getRuntime().exec("su");
                                 DataOutputStream os = new DataOutputStream(p.getOutputStream());
                                 os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
+                                if (gappsOurs.exists()) {
+                                        gapps = "4.2.2_Gapps_No_PS.zip";
+                                } else if  (gappsFile.exists()) {
+                                        gapps = "gapps-jb-20130301-signed.zip";
+                                } else {
+					os.writeBytes("echo 'print" +
+					"GAPPS Not found! Aborting!" +
+					"'>>/cache/recovery/openrecoveryscript\n");
+					Toast.makeText(ctx, R.string.toast_missing_gapps, Toast.LENGTH_SHORT).show();
+				return;
+				}
+
                                 if (selectedOpts[2]) {
                                     os.writeBytes("echo 'backup SDB" +
                                             "' >> /cache/recovery/openrecoveryscript\n");
