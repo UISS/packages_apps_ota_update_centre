@@ -25,6 +25,18 @@
     	    android:summaryOff="@string/notify_false"
     	    android:defaultValue="true"
     	    android:key="show_notif" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+	 android:title="@string/settings_recovery">
+
+	<CheckBoxPreference
+	    android:title="@string/use_cwm_title"
+	    android:summaryOn="@string/cwm_default"
+	    android:summaryOff="@string/cwm_false"
+	    android:defaultValue="false"
+	    android:key="use_cwm" />
     		
     </PreferenceCategory>
 

@@ -97,4 +97,10 @@
     <string name="display_notifications">Show Notifications</string>
     <string name="notify_default">Notifications are on.</string>
     <string name="notify_false">Notifications are off.</string>
+
+    <string name="settings_recovery">Recovery Settings</string>
+    <string name="use_cwm_title">Use ClockworkMod instead of TWRP</string>
+    <string name="cwm_default">CWM commands will be used.</string>
+    <string name="cwm_false">OpenRecovery commands will be used.</string>
+
 </resources>

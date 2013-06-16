@@ -266,7 +266,7 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
 				}
 
                                 if (selectedOpts[2]) {
-					if (Utils.getCWM()) {
+					if (Config.getCWM()) {
 						os.writeBytes("echo 'backup_rom /sdcard/clockworkmod/backup/" +
 						new SimpleDateFormat("yyyy-MM-dd_HH.mm").format(new Date()) +
 						"' >> /cache/recovery/extendedcommand\n");
@@ -277,21 +277,21 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
                                 }
 
                                     if (selectedOpts[0]) {
-					if (Utils.getCWM()) {
+					if (Config.getCWM()) {
 						os.writeBytes("echo '--wipe_data' >> /cache/recovery/command\n");
 					} else {
                                        		os.writeBytes("echo 'wipe data' >> /cache/recovery/openrecoveryscript\n");
                                     	}
 				    }
                                     if (selectedOpts[1]) {
-					if (Utils.getCWM()) {
+					if (Config.getCWM()) {
 						os.writeBytes("echo '--wipe_cache' >> /cache/recovery/command\n");
 				   	} else {
                                         	os.writeBytes("echo 'wipe cache' >> /cache/recovery/openrecoveryscript\n");
 						os.writeBytes("echo 'wipe dalvik' >> /cache/recovery/openrecoveryscript\n");
 					}
                                     }
-				    if (Utils.getCWM()) {
+				    if (Config.getCWM()) {
 				  	os.writeBytes("echo '--update_package=/" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/command\n");
 					os.writeBytes("echo '--update_package=/" + Utils.getRcvrySdPath() + "/" + gapps + "' >> /cache/recovery/command\n");
 				    } else {

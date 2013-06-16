@@ -27,6 +27,7 @@ public class UpdaterSettings extends PreferenceActivity implements OnPreferenceC
     private Config cfg;
     
 	private CheckBoxPreference showNotifPref;
+	private CheckBoxPreference cwmPref;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,10 @@ public class UpdaterSettings extends PreferenceActivity implements OnPreferenceC
 		addPreferencesFromResource(R.xml.settings_main);
 		
 		showNotifPref = (CheckBoxPreference) findPreference("show_notif");
+		cwmPref = (CheckBoxPreference) findPreference("use_cwm");
 		showNotifPref.setChecked(cfg.getShowNotif());
 		showNotifPref.setOnPreferenceClickListener(this);
+		cwmPref.setOnPreferenceClickListener(this);
 	}
 	
 	@Override
@@ -46,6 +49,10 @@ public class UpdaterSettings extends PreferenceActivity implements OnPreferenceC
 	    if (preference == showNotifPref) {
 	        cfg.setShowNotif(showNotifPref.isChecked());
 	        return true;
+	    }
+	    if (preference == cwmPref) {
+		cfg.setCWM(cwmPref.isChecked());
+		return true;
 	    }
 	    return false;
     }
