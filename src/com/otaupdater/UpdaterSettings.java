@@ -28,6 +28,7 @@ public class UpdaterSettings extends PreferenceActivity implements OnPreferenceC
     
 	private CheckBoxPreference showNotifPref;
 	private CheckBoxPreference cwmPref;
+	private CheckBoxPreference autoFlashPref;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,11 @@ public class UpdaterSettings extends PreferenceActivity implements OnPreferenceC
 		
 		showNotifPref = (CheckBoxPreference) findPreference("show_notif");
 		cwmPref = (CheckBoxPreference) findPreference("use_cwm");
+		autoFlashPref = (CheckBoxPreference) findPreference("auto_flash");
 		showNotifPref.setChecked(cfg.getShowNotif());
 		showNotifPref.setOnPreferenceClickListener(this);
 		cwmPref.setOnPreferenceClickListener(this);
+		autoFlashPref.setOnPreferenceClickListener(this);
 	}
 	
 	@Override
@@ -52,6 +55,10 @@ public class UpdaterSettings extends PreferenceActivity implements OnPreferenceC
 	    }
 	    if (preference == cwmPref) {
 		cfg.setCWM(cwmPref.isChecked());
+		return true;
+	    }
+	    if (preference == autoFlashPref) {
+		cfg.setautoFlash(autoFlashPref.isChecked());
 		return true;
 	    }
 	    return false;

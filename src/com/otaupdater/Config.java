@@ -55,6 +55,7 @@ public class Config {
 
     private boolean showNotif = true;
     private static boolean useCWM = false;
+    private static boolean autoFlash = false;
     private boolean ignoredDataWarn = false;
 
     private int lastVersion = -1;
@@ -75,6 +76,7 @@ public class Config {
 
         showNotif = PREFS.getBoolean("showNotif", showNotif);
 	useCWM = PREFS.getBoolean("useCWM",  useCWM);
+	autoFlash = PREFS.getBoolean("autoFlash", autoFlash);
         ignoredDataWarn = PREFS.getBoolean("ignoredDataWarn", ignoredDataWarn);
 
         lastVersion = PREFS.getInt("version", lastVersion);
@@ -129,6 +131,19 @@ public class Config {
 	synchronized (PREFS) {
 	    SharedPreferences.Editor editor = PREFS.edit();
 	    editor.putBoolean("useCWM", useCWM);
+	    editor.commit();
+	}
+    }
+
+    public static boolean getAutoFlash() {
+	return autoFlash;
+    }
+
+    public void setautoFlash(boolean autoFlash) {
+	this.autoFlash = autoFlash;
+	synchronized (PREFS) {
+	    SharedPreferences.Editor editor = PREFS.edit();
+	    editor.putBoolean("autoFlash", autoFlash);
 	    editor.commit();
 	}
     }

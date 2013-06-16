@@ -218,7 +218,7 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
         AlertDialog.Builder alert = new AlertDialog.Builder(ctx);
         alert.setTitle(R.string.alert_install_title);
 //        alert.setMessage(R.string.alert_install_message);
-        if (Utils.getNoflash()) { //can't flash programmatically, must flash manually
+        if (!Config.getAutoFlash()) { //can't flash programmatically, must flash manually
             alert.setMessage(ctx.getString(R.string.alert_noinstall_message, file.getAbsolutePath()));
             alert.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
