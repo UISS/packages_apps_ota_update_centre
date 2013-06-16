@@ -42,7 +42,6 @@ public class Utils {
     private static String cachedOSSdPath = null;
     private static String cachedRcvrySdPath = null;
     private static String cachedRebootCmd = null;
-    private static String cachedNoflash = null;
     
     public static boolean marketAvailable(Context ctx) {
         PackageManager pm = ctx.getPackageManager();
@@ -95,17 +94,6 @@ public class Utils {
         }
         return cachedRebootCmd;
     }
-    
-    public static boolean getNoflash() {
-        if (cachedNoflash == null) {
-            cachedNoflash = getprop(Config.OTA_NOFLASH_PROP);
-            if (cachedNoflash == null) {
-                cachedNoflash = "0";
-            }
-        }
-        return cachedNoflash.equals("1") || cachedNoflash.equalsIgnoreCase("true");
-    }
-
     
     public static Date getOtaDate() {
         if (cachedOtaDate == null) {
