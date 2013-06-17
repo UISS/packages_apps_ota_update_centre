@@ -19,6 +19,8 @@ package com.otaupdater;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -216,7 +218,7 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
         AlertDialog.Builder alert = new AlertDialog.Builder(ctx);
         alert.setTitle(R.string.alert_install_title);
 //        alert.setMessage(R.string.alert_install_message);
-        if (Utils.getNoflash()) { //can't flash programmatically, must flash manually
+        if (!Config.getAutoFlash()) { //can't flash programmatically, must flash manually
             alert.setMessage(ctx.getString(R.string.alert_noinstall_message, file.getAbsolutePath()));
             alert.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
@@ -264,21 +266,40 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
 				}
 
                                 if (selectedOpts[2]) {
-                                    os.writeBytes("echo 'backup SDB" +
-                                            "' >> /cache/recovery/openrecoveryscript\n");
+					if (Config.getCWM()) {
+						os.writeBytes("echo 'backup_rom /sdcard/clockworkmod/backup/" +
+						new SimpleDateFormat("yyyy-MM-dd_HH.mm").format(new Date()) +
+						"' >> /cache/recovery/extendedcommand\n");
+					} else {
+                                    		os.writeBytes("echo 'backup SDB" +
+                                            	"' >> /cache/recovery/openrecoveryscript\n");
+					}
                                 }
 
                                     if (selectedOpts[0]) {
-                                       os.writeBytes("echo 'wipe data' >> /cache/recovery/openrecoveryscript\n");
-                                    }
+					if (Config.getCWM()) {
+						os.writeBytes("echo '--wipe_data' >> /cache/recovery/command\n");
+					} else {
+                                       		os.writeBytes("echo 'wipe data' >> /cache/recovery/openrecoveryscript\n");
+                                    	}
+				    }
                                     if (selectedOpts[1]) {
-                                        os.writeBytes("echo 'wipe cache' >> /cache/recovery/openrecoveryscript\n");
-					os.writeBytes("echo 'wipe dalvik' >> /cache/recovery/openrecoveryscript\n");
+					if (Config.getCWM()) {
+						os.writeBytes("echo '--wipe_cache' >> /cache/recovery/command\n");
+				   	} else {
+                                        	os.writeBytes("echo 'wipe cache' >> /cache/recovery/openrecoveryscript\n");
+						os.writeBytes("echo 'wipe dalvik' >> /cache/recovery/openrecoveryscript\n");
+					}
                                     }
+				    if (Config.getCWM()) {
+				  	os.writeBytes("echo '--update_package=/" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/command\n");
+					os.writeBytes("echo '--update_package=/" + Utils.getRcvrySdPath() + "/" + gapps + "' >> /cache/recovery/command\n");
+				    } else {
 
-                                    os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/openrecoveryscript\n");
-				    os.writeBytes("echo 'print installing_gapps...' >> /cache/recovery/openrecoveryscript\n");
-				    os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() +"/"+ gapps + "' >> /cache/recovery/openrecoveryscript\n");
+                                    	os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/openrecoveryscript\n");
+				    	os.writeBytes("echo 'print installing_gapps...' >> /cache/recovery/openrecoveryscript\n");
+				    	os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() +"/"+ gapps + "' >> /cache/recovery/openrecoveryscript\n");
+				   }
 
                                 os.writeBytes("sync\n");
 

@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 
 public class Config {
+// TODO: register with GCM for a new site.
     public static final String GCM_SENDER_ID = "1068482628480";
     public static final String GCM_REGISTER_URL = "https://www.otaupdatecenter.pro/pages/regdevice2.php";
     public static final String PULL_URL = "https://www.otaupdatecenter.pro/pages/romupdate.php";
@@ -33,7 +34,7 @@ public class Config {
     public static final String OTA_SD_PATH_OS_PROP = "otaupdater.sdcard.os";
     public static final String OTA_SD_PATH_RECOVERY_PROP = "otaupdater.sdcard.recovery";
     public static final String OTA_REBOOT_CMD_PROP = "otaupdater.rebootcmd";
-    public static final String OTA_NOFLASH_PROP = "otaupdater.noflash";
+    public static final String OTA_CWM_PROP = "otaupdater.cwm";
 
     public static final int WAKE_TIMEOUT = 30000;
 
@@ -52,6 +53,8 @@ public class Config {
     }
 
     private boolean showNotif = true;
+    private static boolean useCWM = false;
+    private static boolean autoFlash = false;
     private boolean ignoredDataWarn = false;
 
     private int lastVersion = -1;
@@ -71,6 +74,8 @@ public class Config {
         PREFS = ctx.getApplicationContext().getSharedPreferences(PREFS_NAME, 0);
 
         showNotif = PREFS.getBoolean("showNotif", showNotif);
+	useCWM = PREFS.getBoolean("useCWM",  useCWM);
+	autoFlash = PREFS.getBoolean("autoFlash", autoFlash);
         ignoredDataWarn = PREFS.getBoolean("ignoredDataWarn", ignoredDataWarn);
 
         lastVersion = PREFS.getInt("version", lastVersion);
@@ -114,6 +119,32 @@ public class Config {
             editor.putBoolean("showNotif", showNotif);
             editor.commit();
         }
+    }
+
+    public static boolean getCWM() {
+	return useCWM;
+    }
+
+    public void setCWM(boolean useCWM) {
+	this.useCWM = useCWM;
+	synchronized (PREFS) {
+	    SharedPreferences.Editor editor = PREFS.edit();
+	    editor.putBoolean("useCWM", useCWM);
+	    editor.commit();
+	}
+    }
+
+    public static boolean getAutoFlash() {
+	return autoFlash;
+    }
+
+    public void setautoFlash(boolean autoFlash) {
+	this.autoFlash = autoFlash;
+	synchronized (PREFS) {
+	    SharedPreferences.Editor editor = PREFS.edit();
+	    editor.putBoolean("autoFlash", autoFlash);
+	    editor.commit();
+	}
     }
 
     public boolean getIgnoredDataWarn() {

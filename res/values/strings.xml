@@ -93,8 +93,17 @@
     <string name="license_apache_title">Apache License</string>
     <string name="license_error">Error loading license file</string>
     
-    <string name="settings_notifications">Notification Settings</string>
+    <string name="settings_notifications">Updater Settings</string>
     <string name="display_notifications">Show Notifications</string>
     <string name="notify_default">Notifications are on.</string>
     <string name="notify_false">Notifications are off.</string>
+    <string name="auto_flash_title">Automatically Flash</string>
+    <string name="autoflash_default">Automatically flash in recovery</string>
+    <string name="autoflash_false">Download only</string>
+
+    <string name="settings_recovery">Recovery Settings</string>
+    <string name="use_cwm_title">Use ClockworkMod scripts </string>
+    <string name="cwm_default">CWM commands will be used.</string>
+    <string name="cwm_false">OpenRecovery commands will be used.</string>
+
 </resources>
