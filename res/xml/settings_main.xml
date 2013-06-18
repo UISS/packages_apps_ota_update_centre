@@ -23,7 +23,7 @@
     	    android:title="@string/display_notifications" 
     	    android:summaryOn="@string/notify_default"
     	    android:summaryOff="@string/notify_false"
-    	    android:defaultValue="true"
+    	    android:defaultValue="false"
     	    android:key="show_notif" />
 
 	<CheckBoxPreference
