@@ -18,6 +18,7 @@ package com.otaupdater;
 
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
@@ -29,6 +30,7 @@ public class UpdaterSettings extends PreferenceActivity implements OnPreferenceC
 	private CheckBoxPreference showNotifPref;
 	private CheckBoxPreference cwmPref;
 	private CheckBoxPreference autoFlashPref;
+	private EditTextPreference setGappsPref;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,12 @@ public class UpdaterSettings extends PreferenceActivity implements OnPreferenceC
 		showNotifPref = (CheckBoxPreference) findPreference("show_notif");
 		cwmPref = (CheckBoxPreference) findPreference("use_cwm");
 		autoFlashPref = (CheckBoxPreference) findPreference("auto_flash");
+		setGappsPref = (EditTextPreference) findPreference("set_gapps");
 		showNotifPref.setChecked(cfg.getShowNotif());
 		showNotifPref.setOnPreferenceClickListener(this);
 		cwmPref.setOnPreferenceClickListener(this);
 		autoFlashPref.setOnPreferenceClickListener(this);
+		setGappsPref.setOnPreferenceClickListener(this);
 	}
 	
 	@Override
@@ -61,6 +65,12 @@ public class UpdaterSettings extends PreferenceActivity implements OnPreferenceC
 		cfg.setautoFlash(autoFlashPref.isChecked());
 		return true;
 	    }
+           if (preference == setGappsPref) {
+                return true;
+             } 
+  
 	    return false;
     }
+
+
 }

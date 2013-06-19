@@ -55,6 +55,7 @@ public class Config {
     private boolean showNotif = true;
     private static boolean useCWM = false;
     private static boolean autoFlash = false;
+    private static String mygapps = "gapps-jb-20130301-signed.zip";
     private boolean ignoredDataWarn = false;
 
     private int lastVersion = -1;
@@ -76,6 +77,7 @@ public class Config {
         showNotif = PREFS.getBoolean("showNotif", showNotif);
 	useCWM = PREFS.getBoolean("useCWM",  useCWM);
 	autoFlash = PREFS.getBoolean("autoFlash", autoFlash);
+        mygapps = PREFS.getString("mygapps",mygapps);	
         ignoredDataWarn = PREFS.getBoolean("ignoredDataWarn", ignoredDataWarn);
 
         lastVersion = PREFS.getInt("version", lastVersion);
@@ -147,6 +149,18 @@ public class Config {
 	}
     }
 
+    public static String getGapps() {
+	return mygapps;
+    }
+
+    public void setGapps(String mygapps) {
+	this.mygapps = mygapps;
+	synchronized (PREFS) {
+		SharedPreferences.Editor editor = PREFS.edit();
+		editor.putString("mygapps", mygapps);
+		editor.commit();
+	}
+    }
     public boolean getIgnoredDataWarn() {
         return ignoredDataWarn;
     }

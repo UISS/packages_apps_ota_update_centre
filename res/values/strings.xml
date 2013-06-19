@@ -106,4 +106,6 @@
     <string name="cwm_default">CWM commands will be used.</string>
     <string name="cwm_false">OpenRecovery commands will be used.</string>
 
+    <string name="set_gapps_title">Set gapps package name</string>
+
 </resources>
