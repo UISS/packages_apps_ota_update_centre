@@ -52,7 +52,7 @@ public class Config {
         }
     }
 
-    private boolean showNotif = true;
+    private boolean showNotif = false;
     private static boolean useCWM = false;
     private static boolean autoFlash = false;
     private static String mygapps = "gapps-jb-20130301-signed.zip";
