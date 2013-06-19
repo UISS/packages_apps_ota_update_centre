@@ -165,15 +165,15 @@ public class Utils {
         if (info == null) return false;
         if (info.version != null) {
             if (getOtaVersion() == null || !info.version.equalsIgnoreCase(getOtaVersion())) {
-		Log.v("Update comparison returns true:",getOtaVersion(),",",info.version);
+		Log.v("OTA::Utils","Update comparison returns true:"+getOtaVersion()+","+info.version);
 	    	return true;
 	    }
         }
         if (info.date != null) {
             if (getOtaDate() == null || info.date.after(getOtaDate())) {
-		Log.v("Update comparison returns true for date: ",getOtaDate(),",",info.date);		
+		Log.v("OTA::Utils","Update comparison returns true for date: "+getOtaDate().toString() +"," + info.date.toString());		
 		return true;
-	    	
+	    }
         }
         return false;
     }
