@@ -164,8 +164,8 @@ public class Utils {
     public static boolean isUpdate(RomInfo info) {
         if (info == null) return false;
         if (info.version != null) {
-            if (getOtaVersion() == null || !info.version.equalsIgnoreCase(getOtaVersion())) {
-		Log.v("OTA::Utils","Update comparison returns true:"+getOtaVersion()+","+info.version);
+            if (getOtaVersion() == null ) {
+		Log.v("OTA::Utils","Update comparison returns null=true");
 	    	return true;
 	    }
         }
