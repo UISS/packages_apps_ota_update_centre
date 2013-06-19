@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -34,6 +35,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.util.Log;
 
 public class Utils {
     private static String cachedRomID = null;
@@ -162,10 +164,16 @@ public class Utils {
     public static boolean isUpdate(RomInfo info) {
         if (info == null) return false;
         if (info.version != null) {
-            if (getOtaVersion() == null || !info.version.equalsIgnoreCase(getOtaVersion())) return true;
+            if (getOtaVersion() == null || !info.version.equalsIgnoreCase(getOtaVersion())) {
+		Log.v("OTA::Utils","Update comparison returns true:"+getOtaVersion()+","+info.version);
+	    	return true;
+	    }
         }
         if (info.date != null) {
-            if (getOtaDate() == null || info.date.after(getOtaDate())) return true;
+            if (getOtaDate() == null || info.date.after(getOtaDate())) {
+		Log.v("OTA::Utils","Update comparison returns true for date: "+getOtaDate().toString() +"," + info.date.toString());		
+		return true;
+	    }
         }
         return false;
     }
