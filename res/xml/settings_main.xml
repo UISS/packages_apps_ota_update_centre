@@ -26,17 +26,17 @@
     	    android:defaultValue="false"
     	    android:key="show_notif" />
 
-	<CheckBoxPreference
-	    android:title="@string/auto_flash_title"
-	    android:summaryOn="@string/autoflash_default"
-	    android:summaryOff="@string/autoflash_false"
-	    android:defaultValue="false"
-	    android:key="auto_flash" />
-
     </PreferenceCategory>
 
     <PreferenceCategory
 	 android:title="@string/settings_recovery">
+
+        <CheckBoxPreference
+            android:title="@string/auto_flash_title"
+            android:summaryOn="@string/autoflash_default"
+            android:summaryOff="@string/autoflash_false"
+            android:defaultValue="false"
+            android:key="auto_flash" />
 
 	<CheckBoxPreference
 	    android:title="@string/use_cwm_title"

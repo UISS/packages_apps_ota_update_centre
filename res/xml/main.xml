@@ -34,6 +34,11 @@
             android:icon="@drawable/version"
             android:key="version_view" />
 
+	<Preference
+	    android:title="@string/main_gapps"
+	    android:icon="@drawable/gapps"
+	    android:key="gapps_view" />
+
         <Preference
             android:title="@string/main_otaid"
             android:icon="@drawable/key"

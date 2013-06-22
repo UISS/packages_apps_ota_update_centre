@@ -44,6 +44,7 @@ public class Utils {
     private static String cachedOSSdPath = null;
     private static String cachedRcvrySdPath = null;
     private static String cachedRebootCmd = null;
+    private static String cachedGappsName = null;
     
     public static boolean marketAvailable(Context ctx) {
         PackageManager pm = ctx.getPackageManager();
@@ -75,6 +76,16 @@ public class Utils {
             }
         }
         return cachedOSSdPath;
+    }
+
+    public static String getGappsName() {
+	if (cachedGappsName == null) {
+		cachedGappsName = getprop(Config.OTA_GAPPS_NAME);
+		if (cachedGappsName == null) {
+			cachedGappsName = "gapps-jb-20130301-signed.zip";
+		}
+	}
+	return cachedGappsName;
     }
 
     public static String getRcvrySdPath() {

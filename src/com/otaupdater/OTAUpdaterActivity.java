@@ -153,7 +153,8 @@ public class OTAUpdaterActivity extends PreferenceActivity {
             addPreferencesFromResource(R.xml.main);
 
             String romVersion = Utils.getOtaVersion();
-            if (romVersion == null) romVersion = android.os.Build.ID;
+            if (romVersion == null) romVersion = android.os.Build.VERSION.RELEASE;
+	    String gappVersion = Config.getGapps();
             Date romDate = Utils.getOtaDate();
             if (romDate != null) {
                 romVersion += " (" + DateFormat.getDateTimeInstance().format(romDate) + ")";
@@ -162,9 +163,11 @@ public class OTAUpdaterActivity extends PreferenceActivity {
             final Preference device = findPreference("device_view");
             device.setSummary(android.os.Build.DEVICE.toLowerCase());
             final Preference rom = findPreference("rom_view");
-            rom.setSummary(android.os.Build.DISPLAY);
+            rom.setSummary(Utils.getRomID());
             final Preference version = findPreference("version_view");
             version.setSummary(romVersion);
+	    final Preference gversion = findPreference("gapps_view");
+	    gversion.setSummary(gappVersion);
             final Preference build = findPreference("otaid_view");
             build.setSummary(Utils.getRomID());
 
