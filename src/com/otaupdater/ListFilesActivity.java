@@ -247,7 +247,8 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
                             try {
                                 String name = file.getName();
 				String gapps = Config.getGapps();
-				File gappsFile = new File("/"+ Utils.getRcvrySdPath() + gapps);
+				File gappsFile = new File("/"+ Utils.getRcvrySdPath() + "/" + gapps);
+				Toast.makeText(ctx, Utils.getRcvrySdPath()+"/"+gapps, Toast.LENGTH_SHORT).show();
 
                                 Process p = Runtime.getRuntime().exec("su");
                                 DataOutputStream os = new DataOutputStream(p.getOutputStream());

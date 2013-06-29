@@ -56,7 +56,7 @@ public class UpdaterAbout extends PreferenceActivity {
         } else if (preference == licensePref) {
             startActivity(new Intent(UpdaterAbout.this, License.class));
         } else if (preference == sitePref) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.otaupdatecenter.pro")));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.xenonhd.com")));
         } else {
             return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
