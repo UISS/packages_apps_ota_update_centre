@@ -35,8 +35,8 @@
     <string name="alert_rename">Rename</string>
     <string name="alert_install_title">Install ZIP</string>
     <string name="alert_install">Install</string>
-    <string name="alert_install_message">Installing the file will reboot into recovery to flash the ZIP file. After installation, the system will automatically reboot. Please ensure you have a current gapps file in your sdcard home directory.</string>
-    <string name="alert_noinstall_message">ROMs on your device must be flashed manually.\nPlease use the correct method for your device to flash the ROM\n\nThe .zip file is located at: %1$s .\nDo not forget that you need to flash with a current gapps package! \n To activate autoflash go to RomSettings/PropModder and clear the  NoAutoFlash checkmark.</string>
+    <string name="alert_install_message">Installing the file will reboot into recovery to flash the ZIP file. After installation, the system will automatically reboot. Please ensure you have a current gapps file in your /sdcard base directory.</string>
+    <string name="alert_noinstall_message">ROMs on your device must be flashed manually.\nPlease use the correct method for your device to flash the ROM\n\nThe .zip file is located at: %1$s .\nDo not forget that you need to flash with a current gapps package located at /sdcard! \n To activate autoflash go to Settings and clear the  NoAutoFlash checkmark.</string>
     <string name="alert_update_title">ROM update available!</string>
     <string name="alert_download">Download</string>
     <string name="alert_downloading">Downloading&#8230;</string>
