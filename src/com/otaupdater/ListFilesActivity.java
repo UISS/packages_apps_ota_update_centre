@@ -256,6 +256,7 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
 					} else {
                                         	Toast.makeText(ctx, R.string.toast_missing_gapps, Toast.LENGTH_SHORT).show();
                                 		return;
+					}
                                 } 
 					
 
