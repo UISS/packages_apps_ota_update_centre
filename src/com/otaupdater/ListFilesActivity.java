@@ -296,12 +296,12 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
                                     }
 				    if (Config.getCWM()) {
 				  	os.writeBytes("echo '--update_package=/" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/command\n");
-					os.writeBytes("echo '--update_package=/" + gappsFile + "' >> /cache/recovery/command\n");
+					os.writeBytes("echo '--update_package=" + gappsFile + "' >> /cache/recovery/command\n");
 				    } else {
 
                                     	os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/openrecoveryscript\n");
 				    	os.writeBytes("echo 'print installing_gapps...' >> /cache/recovery/openrecoveryscript\n");
-				    	os.writeBytes("echo 'install /" + gappsFile + "' >> /cache/recovery/openrecoveryscript\n");
+				    	os.writeBytes("echo 'install " + gappsFile + "' >> /cache/recovery/openrecoveryscript\n");
 				   }
 
                                 os.writeBytes("sync\n");
