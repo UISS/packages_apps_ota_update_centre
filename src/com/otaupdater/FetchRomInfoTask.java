@@ -74,6 +74,7 @@ public class FetchRomInfoTask extends AsyncTask<Void, Void, RomInfo> {
             HttpEntity e = r.getEntity();
             if (status == 200) {
                 String data = EntityUtils.toString(e);
+		Log.e("OTA::Fetch",data);
                 JSONObject json = new JSONObject(data);
 
                 if (json.has("error")) {

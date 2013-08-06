@@ -24,9 +24,10 @@ import android.content.pm.PackageManager.NameNotFoundException;
 
 public class Config {
 // TODO: register with GCM for a new site.
-    public static final String GCM_SENDER_ID = "1068482628480";
-    public static final String GCM_REGISTER_URL = "https://www.otaupdatecenter.pro/pages/regdevice2.php";
-    public static final String PULL_URL = "https://www.otaupdatecenter.pro/pages/romupdate.php";
+//    public static final String GCM_SENDER_ID = "1068482628480";
+  public static final String GCM_SENDER_ID = "1059877898893";
+    public static final String GCM_REGISTER_URL = "http://xenonhd.com/otaupdater/ota/pages/regdevice2.php";
+  public static final String PULL_URL = "http://xenonhd.com/otaupdater/ota/pages/romupdate.php";
     public static final String DONATE_URL = "http://forum.xda-developers.com/donatetome.php?u=5059921";
     public static final String OTA_ID_PROP = "otaupdater.otaid";
     public static final String OTA_VER_PROP = "otaupdater.otaversion";

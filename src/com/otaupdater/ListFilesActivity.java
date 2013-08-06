@@ -247,17 +247,25 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
                             try {
                                 String name = file.getName();
 				String gapps = Config.getGapps();
-				File gappsFile = new File("/"+ Utils.getRcvrySdPath() + gapps);
+				File gappsFile = new File("/"+ Utils.getRcvrySdPath() + "/" + gapps);
+				File gappsOurs = new File("/"+ Utils.getRcvrySdPath() + "/4.2.2_Gapps_No_PS.zip");
+				Toast.makeText(ctx, Utils.getRcvrySdPath()+"/"+gapps, Toast.LENGTH_SHORT).show();
+                                if (!gappsFile.exists()) {
+					if (gappsOurs.exists()) {
+						gappsFile = gappsOurs;
+					} else {
+                                        	Toast.makeText(ctx, R.string.toast_missing_gapps, Toast.LENGTH_SHORT).show();
+                                		return;
+					}
+                                } 
+					
+
 
                                 Process p = Runtime.getRuntime().exec("su");
                                 DataOutputStream os = new DataOutputStream(p.getOutputStream());
                                 os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
 				if (Config.getCWM()) {
 					os.writeBytes("rm -f /cache/recovery/command\n");
-				}
-                                if (!gappsFile.exists()) {
-					Toast.makeText(ctx, R.string.toast_missing_gapps, Toast.LENGTH_SHORT).show();
-				return;
 				}
 
                                 if (selectedOpts[2]) {
@@ -288,12 +296,12 @@ public class ListFilesActivity extends ListActivity implements AdapterView.OnIte
                                     }
 				    if (Config.getCWM()) {
 				  	os.writeBytes("echo '--update_package=/" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/command\n");
-					os.writeBytes("echo '--update_package=/" + Utils.getRcvrySdPath() + "/" + gapps + "' >> /cache/recovery/command\n");
+					os.writeBytes("echo '--update_package=" + gappsFile + "' >> /cache/recovery/command\n");
 				    } else {
 
                                     	os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() + "/OTA-Updater/download/" + name + "' >> /cache/recovery/openrecoveryscript\n");
 				    	os.writeBytes("echo 'print installing_gapps...' >> /cache/recovery/openrecoveryscript\n");
-				    	os.writeBytes("echo 'install /" + Utils.getRcvrySdPath() +"/"+ gapps + "' >> /cache/recovery/openrecoveryscript\n");
+				    	os.writeBytes("echo 'install " + gappsFile + "' >> /cache/recovery/openrecoveryscript\n");
 				   }
 
                                 os.writeBytes("sync\n");
